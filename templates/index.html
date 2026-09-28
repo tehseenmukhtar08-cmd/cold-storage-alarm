@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Cold Storage Alarm System</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f4f8;
+            text-align: center;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px gray;
+        }
+
+        h1 {
+            color: #1565c0;
+        }
+
+        .temperature {
+            font-size: 70px;
+            font-weight: bold;
+            color: #0288d1;
+            margin: 30px 0;
+        }
+
+        .target {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .door-section {
+            margin: 30px 0;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            background-color: #1565c0;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0d47a1;
+        }
+
+        .status {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #d4edda;
+            color: #155724;
+            border-radius: 10px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .box {
+            background-color: #f1f8fb;
+            padding: 15px;
+            border-radius: 10px;
+            width: 40%;
+        }
+
+        .box h3 {
+            margin: 5px;
+            color: #555;
+        }
+
+        .box p {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Critical Alarm Flashing */
+
+        .critical-alarm {
+            background-color: #ff0000 !important;
+            color: white !important;
+            animation: flash 0.8s infinite;
+        }
+
+        @keyframes flash {
+
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+
+            100% {
+                opacity: 1;
+            }
+
+        }
+
+        /* Alarm History Button */
+
+        .history-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 25px;
+            background-color: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .history-button:hover {
+            background-color: #1b5e20;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <!-- Project Heading -->
+
+        <h1>🧊 Cold Storage Freezer</h1>
+
+
+        <!-- Target Temperature -->
+
+        <p class="target">
+
+            Target Temperature:
+            <b>-18°C</b>
+
+        </p>
+
+
+        <!-- Current Temperature -->
+
+        <div class="temperature" id="temperature">
+
+            -18°C
+
+        </div>
+
+
+        <!-- Door Section -->
+
+        <div class="door-section">
+
+            <h2>🚪 Door Status</h2>
+
+            <button id="doorButton">
+
+                Door Closed
+
+            </button>
+
+        </div>
+
+
+        <!-- Status -->
+
+        <div class="status" id="status">
+
+            🟢 NORMAL
+
+        </div>
+
+
+        <!-- Minimum and Maximum -->
+
+        <div class="info">
+
+            <div class="box">
+
+                <h3>Minimum</h3>
+
+                <p id="minimum">
+
+                    -18°C
+
+                </p>
+
+            </div>
+
+
+            <div class="box">
+
+                <h3>Maximum</h3>
+
+                <p id="maximum">
+
+                    -18°C
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Alarm Information -->
+
+        <div class="info">
+
+            <div class="box">
+
+                <h3>Alarm Duration</h3>
+
+                <p id="alarmDuration">
+
+                    0 seconds
+
+                </p>
+
+            </div>
+
+
+            <div class="box">
+
+                <h3>Peak Temperature</h3>
+
+                <p id="peakTemperature">
+
+                    -18°C
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Alarm History Button -->
+
+        <a href="/alarm_history" class="history-button">
+
+            📋 View Alarm History
+
+        </a>
+
+
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+
+</body>
+
+</html>

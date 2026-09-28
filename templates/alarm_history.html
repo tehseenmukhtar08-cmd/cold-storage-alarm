@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Alarm History</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f4f8;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px gray;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1565c0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th {
+            background-color: #1565c0;
+            color: white;
+            padding: 15px;
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f1f8fb;
+        }
+
+        .critical {
+            color: red;
+            font-weight: bold;
+        }
+
+        .delete-button {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .delete-button:hover {
+            background-color: #b71c1c;
+        }
+
+        .back-button {
+            display: block;
+            width: 180px;
+            margin: 30px auto 0;
+            padding: 12px;
+            text-align: center;
+            background-color: #1565c0;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .back-button:hover {
+            background-color: #0d47a1;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <h1>🚨 Alarm History</h1>
+
+        {% if alarms %}
+
+        <table>
+
+            <tr>
+
+                <th>Alarm ID</th>
+
+                <th>Alarm Type</th>
+
+                <th>Peak Temperature</th>
+
+                <th>Duration</th>
+
+                <th>Alarm Time</th>
+
+                <th>Action</th>
+
+            </tr>
+
+
+            {% for alarm in alarms %}
+
+            <tr>
+
+                <td>
+                    {{ alarm[0] }}
+                </td>
+
+                <td class="critical">
+                    {{ alarm[1] }}
+                </td>
+
+                <td>
+                    {{ alarm[2] }} °C
+                </td>
+
+                <td>
+                    {{ alarm[3] }} seconds
+                </td>
+
+                <td>
+                    {{ alarm[4] }}
+                </td>
+
+                <td>
+
+                    <form
+                        action="/delete_alarm/{{ alarm[0] }}"
+                        method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this alarm?');"
+                    >
+
+                        <button type="submit" class="delete-button">
+                            Delete
+                        </button>
+
+                    </form>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+        {% else %}
+
+        <h2 style="text-align:center;">
+            No alarm records found.
+        </h2>
+
+        {% endif %}
+
+
+        <a href="/" class="back-button">
+            ← Back to Dashboard
+        </a>
+
+    </div>
+
+</body>
+
+</html>
